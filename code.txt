@@ -1,0 +1,45 @@
+//Floyd cycle algorithm
+//Time complexity=O(n)
+
+package interviewQuestion;
+class Node{
+	int data;
+	Node next;
+	Node(int d){ 
+data =d; next=null;}
+}
+public class ToDetectLoopinLinkedListFloydAlgo {
+	Node head;
+	public void push(int new_data)
+	{
+		Node new_node=new Node(new_data);
+		new_node.next=head;
+		head=new_node;
+		
+	}
+public int loop(){
+	Node slow_head=head,Fast_head=head;
+	while(slow_head!=null&&Fast_head!=null&&Fast_head.next!=null)
+	{
+		slow_head=slow_head.next;
+		Fast_head=Fast_head.next.next;
+		if(slow_head==Fast_head) {
+			System.out.println("loop found");
+			return 1;
+		}
+			
+	}
+	return 0;
+}
+	public static void main(String[] args) {
+		
+ToDetectLoopinLinkedListFloydAlgo llist= new ToDetectLoopinLinkedListFloydAlgo();
+llist.push(20);
+llist.push(4);
+llist.push(15);
+llist.push(10);
+llist.head.next.next.next.next=llist.head;
+llist.loop();
+	}
+
+}
